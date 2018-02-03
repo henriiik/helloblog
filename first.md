@@ -15,7 +15,9 @@
 * prettier formats
 * checkout rocket documentation https://rocket.rs/guide/getting-started/
 
-- `cargo.toml`
+## Rocket
+
+* `cargo.toml`
 
   ```toml
   [dependencies]
@@ -23,7 +25,7 @@
   rocket_codegen = "0.3.6"
   ```
 
-- `src/main.rs`
+* `src/main.rs`
 
   ```rust
   #![feature(plugin)]
@@ -41,35 +43,51 @@
   }
   ```
 
-- it works!
+* it works!
 
-- render markdown?
+## Markdown
 
-- checkout `rustdoc`
+* render markdown?
 
-- checkout `pulldown-cmark`
+* checkout `rustdoc`
+
+* checkout `pulldown-cmark`
 
   * Raph Levien is cool
 
-- `cargo.toml`
+* `cargo.toml`
 
   ```toml
   pulldown-cmark = { version = "0.0.11", default-features = false }
   ```
 
-- writing a blog while coding is weird
+* writing a blog while coding is weird
 
-- `pulldown-cmark` docs hard, need getting started guide
+* `pulldown-cmark` docs hard, need getting started guide
 
   * https://docs.rs/pulldown-cmark/0.1.0/pulldown_cmark/struct.Parser.html
 
   - newest version is `0.1.0`
   - found guide https://docs.rs/pulldown-cmark/0.1.0/pulldown_cmark/html/fn.push_html.html
 
-- classic problem return string from function
+* classic problem return string from function
 
   * still cant remember
 
   - perhaps rocket can help
 
   - just setting return type to `String` works! magic!
+
+## HTML
+
+* page not rendered correctly, needs html tags
+
+- format macro to the rescue!
+
+  * https://doc.rust-lang.org/std/macro.format.html
+
+- forgot rebuild
+
+- html tags not really problem? rocket content type to the resque
+  * https://rocket.rs/guide/responses/#wrapping
+  * https://api.rocket.rs/rocket/response/content/struct.Html.html

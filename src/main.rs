@@ -4,10 +4,11 @@
 extern crate pulldown_cmark;
 extern crate rocket;
 
+use rocket::response::content;
 use pulldown_cmark::{html, Parser};
 
 #[get("/")]
-fn index() -> String {
+fn index() -> content::Html<String> {
     let markdown_str = r#"
 hello
 =====
@@ -20,7 +21,7 @@ hello
     let mut html_buf = String::new();
     html::push_html(&mut html_buf, parser);
 
-    html_buf
+    content::Html(format!("{}", html_buf))
 }
 
 fn main() {
