@@ -91,3 +91,18 @@
 - html tags not really problem? rocket content type to the resque
   * https://rocket.rs/guide/responses/#wrapping
   * https://api.rocket.rs/rocket/response/content/struct.Html.html
+
+## File Handling
+
+* reading a file!
+
+  * https://doc.rust-lang.org/book/second-edition/ch12-02-reading-a-file.html
+
+* some error text missing from vscode
+
+  * recompile to get full error
+
+* fixed with
+  ```rust
+  use std::io::Read;
+  ```
