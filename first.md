@@ -42,3 +42,34 @@
   ```
 
 - it works!
+
+- render markdown?
+
+- checkout `rustdoc`
+
+- checkout `pulldown-cmark`
+
+  * Raph Levien is cool
+
+- `cargo.toml`
+
+  ```toml
+  pulldown-cmark = { version = "0.0.11", default-features = false }
+  ```
+
+- writing a blog while coding is weird
+
+- `pulldown-cmark` docs hard, need getting started guide
+
+  * https://docs.rs/pulldown-cmark/0.1.0/pulldown_cmark/struct.Parser.html
+
+  - newest version is `0.1.0`
+  - found guide https://docs.rs/pulldown-cmark/0.1.0/pulldown_cmark/html/fn.push_html.html
+
+- classic problem return string from function
+
+  * still cant remember
+
+  - perhaps rocket can help
+
+  - just setting return type to `String` works! magic!
