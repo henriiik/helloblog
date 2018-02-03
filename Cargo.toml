@@ -1,0 +1,6 @@
+[package]
+name = "helloblog"
+version = "0.1.0"
+authors = ["henke <henriiik@gmail.com>"]
+
+[dependencies]
