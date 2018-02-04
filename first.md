@@ -106,3 +106,9 @@
   ```rust
   use std::io::Read;
   ```
+
+## Finishing up
+
+* added some html tags to the template
+* added some errror handling
+  * https://rocket.rs/guide/responses/#result
