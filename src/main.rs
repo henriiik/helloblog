@@ -39,7 +39,8 @@ fn page(mut path: PathBuf) -> Result<Html<String>, NotFound<String>> {
         .map_err(|e| NotFound(format!("{}", e)))?;
 
     Ok(Html(format!(
-        r#"<!DOCTYPE html><html><head><meta charset="UTF-8"><title>HelloBlog</title><style>{}</style></head><body><h1><a href="/">HelloBlog</a></h1>{}</body></html>"#,
+        r#"<!DOCTYPE html><html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>HelloBlog</title><style>{}</style></head><body><h1><a href="/">HelloBlog</a></h1>{}</body></html>"#,
         css_contents,
         html_buf
     )))

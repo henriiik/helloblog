@@ -1,5 +1,7 @@
 ## [Intermission: Deployment](/blog/2017-02-11-intermission-deployment)
 
+2017-02-11 by Henrik Sjööh
+
 ## The Container
 
 I fiddled around with trying to build self-contained binaries for a while but in the end I settled with using the official docker image for rust and creating a `Dockerfile` for the project.
