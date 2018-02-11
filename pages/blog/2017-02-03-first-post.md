@@ -1,4 +1,4 @@
-# First Post
+## [First Post](/blog/2017-02-03-first-post)
 
 I decided to create a blog, in rust, and to blog about creating it. It sounded like a fun thing to do. What if you could make your whole website in just markdown files. I suspect sooner or later something more will have to be added.
 
@@ -347,3 +347,5 @@ Some un-answered questions came to mind as well
   * Apparently rocket can do this, yay!
 
 The questions were quickly answered.
+
+Check out the next post in the series [Styles](/blog/2017-02-11-pages).
