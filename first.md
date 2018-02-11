@@ -338,3 +338,12 @@ Whilst writing the post from my notes, some things became clear.
   * fortunately i found a good [spell check extension for VSCode](https://marketplace.visualstudio.com/items?itemName=ban.spellright) that uses the system spelling API.
 * It's pretty boring without images.
 * The page really needs some styles
+
+Some un-answered questions came to mind as well
+
+* How to deploy?
+  * I guess stick all the files in a container and just run it?
+* How to handle HTTPS?
+  * Apparently rocket can do this, yay!
+
+The questions were quickly answered.
