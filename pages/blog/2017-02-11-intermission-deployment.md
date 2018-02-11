@@ -28,7 +28,7 @@ $ docker run -d -p 80:80 helloblog:latest
 
 ## The Server
 
-I decided to deploy site to a digital ocean droplet. After some fiddling I got docker machine working with the digital ocean driver by following the instructions in [the docker-machine docs](docker-machine create --driver digitalocean do).
+I decided to deploy site to a digital ocean droplet. After some fiddling I got docker machine working with the digital ocean driver by following the instructions in [the docker-machine docs](https://docs.docker.com/machine/drivers/digital-ocean/).
 
 ```
 docker-machine create --driver digitalocean do
@@ -39,7 +39,7 @@ It works!
 
 ## It's Alive!
 
-You can now visit the site on https://helloblog.enhenrik.nu
+You can now visit the site on [https://helloblog.enhenrik.nu](https://helloblog.enhenrik.nu)
 
 ## It's not production ready
 
