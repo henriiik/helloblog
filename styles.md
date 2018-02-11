@@ -1,0 +1,146 @@
+## Styles
+
+I figured that starting with the CSS would be best thing. Since I can just put it inline in the "template" string for now. And then extract it into a file once I know how I want the project to be structured.
+
+A "long" time ago (a few years perhaps?) I read an interactive webpage that took a page with no styles and added them gradually, explaining what was added and why.
+
+That felt like a pretty good fit to this project so I decided to dig (google) it up, and it's called [Web Design in 4 minutes](https://jgthms.com/web-design-in-4-minutes) by [Jeremy Thomas](https://jgthms.com)
+
+I went through it and it did a lot more things than I remember but I think it's a great start!
+
+## Serving Style
+
+The number of puns in the blog so far is pretty low but I am hoping it will get better over time.
+
+I thought about how I would go about inlining the css in the "template", perhaps a `'static str` would be best, since it would "never" change.
+
+But the more I thought about it the more I liked the thought of having the css in a file. To get all the benefits of being able to edit it like a file. Highlighting, completion, automatic formatting and so on. It can still be inlined, but it wont require a recompile on changes.
+
+I created a `hello.css` and with some copy-pasting and "creative" renaming I was able to read the `.css` file like the `.md` file and stick it on the page!
+
+```rust
+#[get("/")]
+fn index() -> Result<Html<String>, NotFound<String>> {
+    let mut css_file = File::open("hello.css").map_err(|e| NotFound(format!("{}", e)))?;
+
+    let mut css_contents = String::new();
+    css_file
+        .read_to_string(&mut css_contents)
+        .map_err(|e| NotFound(format!("{}", e)))?;
+
+    let mut md_file = File::open("first.md").map_err(|e| NotFound(format!("{}", e)))?;
+
+    let mut md_contents = String::new();
+    md_file
+        .read_to_string(&mut md_contents)
+        .map_err(|e| NotFound(format!("{}", e)))?;
+
+    let parser = Parser::new(&md_contents);
+
+    let mut html_buf = String::new();
+    push_html(&mut html_buf, parser);
+
+    Ok(Html(format!(
+        r#"<!DOCTYPE html><html><head><meta charset="UTF-8"><title>helloblog</title><style>{}</style></head><body>{}</body></html>"#,
+        css_contents,
+        html_buf
+    )))
+}
+```
+
+thats some grade-a copy pasting right there. Looking at the code I see that the `{css,md}_file` variables are not necessary and the operations on the files can be chained all the way.
+
+```rust
+let mut css_contents = String::new();
+File::open("hello.css")
+    .map_err(|e| NotFound(format!("{}", e)))?
+    .read_to_string(&mut css_contents)
+    .map_err(|e| NotFound(format!("{}", e)))?;
+
+let mut md_contents = String::new();
+File::open("first.md")
+    .map_err(|e| NotFound(format!("{}", e)))?
+    .read_to_string(&mut md_contents)
+    .map_err(|e| NotFound(format!("{}", e)))?;
+```
+
+Nice! Still a lot of duplication, so it should probably be extracted into its own function. But I will save that for now, and focus on the css.
+
+## Styling the page
+
+The fist thing to add is [centering](https://jgthms.com/web-design-in-4-minutes/#centering). So let's start with that and see if we can get it to appear on the page. I added the following to `hello.css`
+
+```css
+body {
+  margin: 0 auto;
+  max-width: 50em;
+}
+```
+
+Next up in WDI4M is [styling the text it self](https://jgthms.com/web-design-in-4-minutes/#font-family). The site suggests using `Helvetica` and `Arial` but I recently read about [Shipping system fonts to GitHub.com](http://markdotto.com/2018/02/07/github-system-fonts/) and since I am a fan of the San Francisco font I want to do the same. So I copy the font family from that post.
+
+```css
+font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial,
+  sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+```
+
+Then it is time for some [spacing](https://jgthms.com/web-design-in-4-minutes/#spacing) and more [subtle changes](https://jgthms.com/web-design-in-4-minutes/#color-contrast) and now `hello.css` looks like this.
+
+```css
+body {
+  margin: 0 auto;
+  max-width: 50em;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial,
+    sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  line-height: 1.5;
+  padding: 4em 1em;
+  color: #555;
+}
+
+h1,
+h2,
+strong {
+  color: #333;
+}
+
+h2 {
+  margin-top: 1em;
+  padding-top: 1em;
+}
+```
+
+And it's looking pretty sweet! Except for the code snippets, fortunately Jeremy Thomas can help us [balance](https://jgthms.com/web-design-in-4-minutes/#balance) that.
+
+```css
+code,
+pre {
+  background: #eee;
+}
+
+code {
+  padding: 2px 4px;
+  vertical-align: text-bottom;
+}
+
+pre {
+  padding: 1em;
+}
+```
+
+Unfortunately my code blocks don't have the same html as the ones in WDI4M and the padding on the `code` element makes the first line indented, but not the rest. It is easily fixed by removing the padding when `code` is inside `pre`.
+
+```css
+pre code {
+  padding: 0;
+}
+```
+
+I also notice that some of my code snippets are wider than the page for small windows, devices so I add some scrolling on overflow.
+
+There is more in the guide but I feel pretty good about where the styles are at right now, so they're enough for now and I can revisit it later.
+
+## What's Next?
+
+Well, now we have 2 posts, but no way to show the second one. So I think that might be a good next step.
+
+This post was written while i was working on the styles and i found that to be a lot easier than to taking notes and trying to remember and write afterwards.
