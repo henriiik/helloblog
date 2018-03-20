@@ -1,6 +1,6 @@
-## [First Post](/blog/2017-02-03-first-post)
+## [First Post](/blog/2018-02-03-first-post)
 
-2017-02-03 by Henrik Sjööh
+2018-02-03 by Henrik Sjööh
 
 I decided to create a blog, in rust, and to blog about creating it. It sounded like a fun thing to do. What if you could make your whole website in just markdown files. I suspect sooner or later something more will have to be added.
 
@@ -350,4 +350,4 @@ Some un-answered questions came to mind as well
 
 The questions were quickly answered.
 
-Check out the next post in the series [Styles](/blog/2017-02-11-pages).
+Check out the next post in the series [Styles](/blog/2018-02-11-pages).

@@ -1,6 +1,6 @@
-## [Intermission: Deployment](/blog/2017-02-11-intermission-deployment)
+## [Intermission: Deployment](/blog/2018-02-11-intermission-deployment)
 
-2017-02-11 by Henrik Sjööh
+2018-02-11 by Henrik Sjööh
 
 ## The Container
 
