@@ -1,0 +1,9 @@
+[package]
+name = "hellowasm"
+version = "0.1.0"
+authors = ["henke <henriiik@gmail.com>"]
+
+[lib]
+crate-type = ["cdylib"]
+
+[dependencies]

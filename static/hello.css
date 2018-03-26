@@ -24,13 +24,19 @@ h2 {
   padding-top: 1em;
 }
 
+blockquote,
 code,
 pre {
   background: #eee;
 }
 
+blockquote {
+  border-left: 0.4em solid #555;
+  padding: 0 1em;
+}
+
 code {
-  padding: 3px 6px;
+  padding: 0.1em 0.2em;
 }
 
 pre {
@@ -40,4 +46,12 @@ pre {
 
 pre code {
   padding: 0;
+}
+
+small {
+  color: #777;
+}
+
+img {
+  max-width: 100%;
 }

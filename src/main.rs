@@ -4,20 +4,26 @@
 extern crate pulldown_cmark;
 extern crate rocket;
 
-use std::path::{Path, PathBuf};
-use std::fs::File;
-use std::io::Read;
-use rocket::response::content::Html;
-use rocket::response::status::NotFound;
 use pulldown_cmark::Parser;
 use pulldown_cmark::html::push_html;
+use rocket::response::NamedFile;
+use rocket::response::content::Html;
+use rocket::response::status::NotFound;
+use std::fs::File;
+use std::io::Read;
+use std::path::{Path, PathBuf};
 
 #[get("/")]
 fn index() -> Result<Html<String>, NotFound<String>> {
     page(PathBuf::from("index"))
 }
 
-#[get("/<path..>")]
+#[get("/static/<file..>")]
+fn file(file: PathBuf) -> Option<NamedFile> {
+    NamedFile::open(Path::new("static/").join(file)).ok()
+}
+
+#[get("/<path..>", rank = 2)]
 fn page(mut path: PathBuf) -> Result<Html<String>, NotFound<String>> {
     path.set_extension("md");
 
@@ -32,20 +38,15 @@ fn page(mut path: PathBuf) -> Result<Html<String>, NotFound<String>> {
     let mut html_buf = String::new();
     push_html(&mut html_buf, parser);
 
-    let mut css_contents = String::new();
-    File::open("hello.css")
-        .map_err(|e| NotFound(format!("{}", e)))?
-        .read_to_string(&mut css_contents)
-        .map_err(|e| NotFound(format!("{}", e)))?;
-
     Ok(Html(format!(
         r#"<!DOCTYPE html><html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<title>HelloBlog</title><style>{}</style></head><body><h1><a href="/">HelloBlog</a></h1>{}</body></html>"#,
-        css_contents,
+<title>HelloBlog</title><link rel="stylesheet" type="text/css" href="/static/hello.css"><script type="text/javascript" src="/static/hello.js" defer></script></head><body><h1><a href="/">HelloBlog</a></h1>{}</body></html>"#,
         html_buf
     )))
 }
 
 fn main() {
-    rocket::ignite().mount("/", routes![index, page]).launch();
+    rocket::ignite()
+        .mount("/", routes![index, file, page])
+        .launch();
 }
